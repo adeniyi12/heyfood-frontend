@@ -1,31 +1,22 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Box, Avatar } from '@mui/material';
-import { useGetRestaurants } from '@/pages/api/food';
-import { Star } from '@mui/icons-material';
+import * as React from "react";
+import Typography from "@mui/material/Typography";
+import { Box, Avatar, Button } from "@mui/material";
+import { Star } from "@mui/icons-material";
 
-const Restaurant = ({restaurantData}) => {
-
-    // const {isLoading, data: restaurantData, error} = useGetRestaurants();
-
-    // if(isLoading){
-    //     return <p>Loading...</p>
-    // }
-
-    // if(error){
-    //     return <p>Error</p>
-    // }
-    // console.log(restaurantData)
-
+const Restaurant = ({ restaurantData, showResetButton, handleReset }) => {
   return (
     <>
-    <Typography variant="h5" gutterBottom>All Restaurants</Typography> 
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'left' }}>   
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold", mt: 4, mb: 4, mr: 4 }}>
+          All Restaurants
+        </Typography>
+        {showResetButton && (
+          <Button variant="text" sx={{ fontWeight: "bold", color: "red" }} onClick={handleReset}>
+            Reset
+          </Button>
+        )}
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, justifyContent: "left" }}>
         {restaurantData.map((restaurant) => (
           <Box
             key={restaurant._id}
@@ -33,25 +24,21 @@ const Restaurant = ({restaurantData}) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              // gap: 1, // Add gap between image and text
-              // padding: "2px", // Add padding for spacing inside the box
-              // mx: 1,
             }}
           >
-            <Avatar alt={restaurant.name} src={restaurant.image} variant="rounded" sx={{ width: "440.56px", height: "165.2px" }} />
-            <Box sx={{ pb: 2, minWidth: '440.56px', backgroundColor: "white", borderRadius: "4px", textAlign: "left" }}>
-              <Typography variant="h6" component="div">
+            <Avatar alt={restaurant.name} src={restaurant.image} variant="rounded" sx={{ width: { xs: "100%", md: "440.56px"}, height: "165.2px" }} />
+            <Box sx={{ pb: 2, minWidth: "440.56px", backgroundColor: "white", borderRadius: "4px", textAlign: "left" }}>
+              <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
                 {restaurant.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {restaurant.tags.join(", ")}
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                {/* <Rating name="read-only" value={4.5} precision={0.1} readOnly /> */}
-                <Typography variant="body2" color="text.secondary" sx={{ ml: 1, display: 'flex', alignItems: 'center' }}>
-                  <Star sx={{ fontSize: 'inherit' }} />
+                <Typography variant="body2" color="text.secondary" sx={{ ml: 1, display: "flex", alignItems: "center" }}>
+                  <Star sx={{ fontSize: "inherit" }} />
                   {restaurant.rate}
-              </Typography>
+                </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
                   {restaurant.ratings}+ Ratings
                 </Typography>
@@ -59,9 +46,9 @@ const Restaurant = ({restaurantData}) => {
             </Box>
           </Box>
         ))}
-    </Box>
+      </Box>
     </>
   );
-}
+};
 
-export default Restaurant
+export default Restaurant;

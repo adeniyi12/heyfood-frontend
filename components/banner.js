@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Tabs, { tabsClasses } from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { Avatar } from "@mui/material";
 
 const bannerData = [
@@ -37,7 +36,7 @@ const Banner = () => {
     <Box
       sx={{
         flexGrow: 1,
-        maxWidth: { xs: 320, sm: 520, md: 960, lg: 1200, xl: "100%" },
+        maxWidth: '100%',
         bgcolor: "background.paper",
         mt: 6,
       }}
@@ -49,13 +48,13 @@ const Banner = () => {
         sx={{
           [`& .${tabsClasses.scrollButtons}`]: {
             "&.Mui-disabled": { opacity: 0.9 },
-            borderRadius: "50%", // Make the background circular
-            width: 40, // Set the width of the circular background
-            height: 40, // Set the height of the circular background
+            borderRadius: "50%",
+            width: { xs: 20, sm: 20, md: 40 }, 
+            height: { xs: 20, sm: 20, md: 40}, 
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "lightgray", // Set the background color of the circular background
+            backgroundColor: "lightgray",
           },
           display: "flex",
           alignItems: "center",
@@ -69,8 +68,8 @@ const Banner = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: 1, // Add gap between image and text
-              padding: "4px", // Add padding for spacing inside the box
+              gap: 1,
+              padding: "4px",
               mx: 1,
             }}
           >
